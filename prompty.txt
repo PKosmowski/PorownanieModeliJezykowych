@@ -1,0 +1,29 @@
+1. Tell me, what is the latest official version of Angular as of June 10,2025?
+
+2. Using the most up to date best practices and the latest stable version of Angular, we will build a To-Do application (frontend only). Let's start with a fresh angular project.
+
+3. Create a new Angular component for displaying a list of tasks. Implement basic form to add new task with description field.
+
+4. Add 'add' button functionality.
+
+5. Add the ability to delete tasks from the list. Each task should have a delete button (with an icon).
+
+6. Add task editing, when clicking on a icon next to a task is should be editable. After saving the changes should be visible immiediately.
+
+7. Add the ability to mark a task as completed using a checkbox. Completed tasks should be styled differently.
+
+8. Implement task filtering, show: 'all', 'active', 'completed' tasks based on ther completion status. Add toggle buttons for switching views.
+
+9. Persis the To-Do list in localStorage so that the task list is restored when the page is reloaded.
+
+10. Add a due date field to tasks, if the due date is in the past, display red warning label next to a task.
+
+-- DIFFICULTY UP --
+11. Implement drag-and-drop functionality.
+12. Add a 'CLEAR' completed button that removes all completed tasks from the list
+13. Add a modal to CLEAR button, when you click on it it should ask you 'are you sure you want to clear all completed tasks'.
+
+14. Add angular animations to animate task addition, removal and completion toggling.
+
+
+
