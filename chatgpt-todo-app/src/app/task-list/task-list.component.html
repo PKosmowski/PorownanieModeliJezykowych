@@ -1,0 +1,54 @@
+<form [formGroup]="taskForm" (ngSubmit)="addTask()">
+  <input type="text" placeholder="Enter task description" formControlName="description" />
+  <input type="date" formControlName="dueDate" />
+  <button type="submit" [disabled]="taskForm.invalid">Add Task</button>
+</form>
+
+
+<div class="filters">
+  <button [class.active]="currentFilter() === 'all'" (click)="setFilter('all')">All</button>
+  <button [class.active]="currentFilter() === 'active'" (click)="setFilter('active')">Active</button>
+  <button [class.active]="currentFilter() === 'completed'" (click)="setFilter('completed')">Completed</button>
+</div>
+
+<ul cdkDropList (cdkDropListDropped)="drop($event)">
+  <li *ngFor="let task of filteredTasks(); let i = index" cdkDrag>
+    <ng-container *ngIf="editingTaskId() === task.id; else showTask">
+      <!-- edit form -->
+    </ng-container>
+
+    <ng-template #showTask>
+      <label class="task-item" [class.completed]="task.done">
+        <input type="checkbox" [checked]="task.done" (change)="toggleDone(task.id)" />
+        <span class="task-desc">{{ task.description }}</span>
+        <span class="due-date">
+          (Due: {{ task.dueDate | date:'yyyy-MM-dd' }})
+          <span *ngIf="isOverdue(task.dueDate) && !task.done" class="overdue-label">
+            Overdue!
+          </span>
+        </span>
+      </label>
+
+      <div class="task-actions">
+        <button (click)="startEditing(task)">✏️</button>
+        <button (click)="deleteTask(task.id)">🗑️</button>
+      </div>
+    </ng-template>
+  </li>
+</ul>
+
+<button class="clear-btn" (click)="openConfirmModal()" *ngIf="hasCompletedTasks">
+  🧹 Clear Completed
+</button>
+
+
+<div class="modal-backdrop" *ngIf="showConfirmModal()">
+  <div class="modal">
+    <p>Are you sure you want to clear all completed tasks?</p>
+    <div class="modal-actions">
+      <button class="confirm" (click)="confirmClearCompleted()">Yes, clear</button>
+      <button class="cancel" (click)="closeConfirmModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
