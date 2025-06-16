@@ -1,0 +1,25 @@
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1.5rem 0;
+
+  button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 20px;
+    background: var(--secondary);
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+
+    &:hover {
+      background: var(--primary);
+    }
+
+    &.active {
+      background: var(--primary);
+      font-weight: bold;
+    }
+  }
+}
